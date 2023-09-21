@@ -8,27 +8,31 @@ the model is tested on the unseen test set to establish the model's performance.
 the dot-product classifier to determine the possibility of a connection between two adjacent snoRNA-disease nodes based on the dot products.
 
 <h2>Datasets</h2>
-The SAGESDA model relies on three main data sets namely obtained from Zijie et al. as explained in the manuscript;
-1. SnoRNA Similarity Matrix which represents the similarity between snoRNAs.
-2. Disease Similarity Matrix which represents the similarity between diseases.
-3. Association Data which contains association information based on the known snoRNA-disease associations. 
+The SAGESDA model relies on three main data sets obtained from Zijie et al. as explained in the manuscript;, these are:
+<ol>
+   <li>SnoRNA Similarity Matrix which represents the similarity between snoRNAs.</li>
+   <li>Disease Similarity Matrix which represents the similarity between diseases.</li>
+   <li>Association Data which contains association information based on the known snoRNA-disease associations.</li>
+</ol>
+ 
 Note that the association data was used to generate an adjacency matrix in which values 0 and 1 represent negative and positive associations, respectively.
 The heterogeneous graph was then generated using the adjacency matrix information.
 
 <h2>Model Architecture</h2>
 The SAGESDA model was implemented based on the GraphSAGE GNN architecture, specifically designed for graph-based semi-supervised learning tasks. 
 It involves the following stages of development:
-1. Graph Construction:
-   The snoRNA and disease similarity matrices alongside the adjacency matrix information (association data) were utilized to construct a heterogeneous graph,
-   whereby each snoRNA and disease are represented as a node in the graph with the links representing the association information.
-
-2. GraphSAGE Layers:
-   SAGESDA consisted of multiple GraphSAGE layers which facilitated feature aggregation utilizing a node's local neighborhood to generate its embedding.
+<ol>
+   <li>Graph Construction:</li>
+   <p>The snoRNA and disease similarity matrices alongside the adjacency matrix information (association data) were utilized to construct a heterogeneous graph,
+   whereby each snoRNA and disease are represented as a node in the graph with the links representing the association information.</p>
+   <li>GraphSAGE Layers:</li>
+   <p>SAGESDA consisted of multiple GraphSAGE layers which facilitated feature aggregation utilizing a node's local neighborhood to generate its embedding.
    These layers were stacked for the purpose of capturing complex patterns in the graph.
-   Furthermore, the model utilized three heterogeneous networks trained on the same parameters to obtain rich node embeddings.
-
-3. The output Layer: The final layer of the model is a binary classification layer that predicts the probability of association between snoRNAs and diseases. 
-The model uses a dot-product classifier to determine potential associations based on the dot products after which popular evaluation metrics such as AUC are used to establish model performance.
+   Furthermore, the model utilized three heterogeneous networks trained on the same parameters to obtain rich node embeddings.</p>
+   <li>The output Layer:</li>
+   <p>The final layer of the model is a binary classification layer that predicts the probability of association between snoRNAs and diseases. 
+The model uses a dot-product classifier to determine potential associations based on the dot products after which popular evaluation metrics such as AUC are used to establish model performance.</p>
+</ol>
 
 <h2>Model usage</h2>
 The usage of the SAGESDA model involves data preparation, processing, model training and evaluation, model testing and finally prediction of snoRNA-disease associations.
