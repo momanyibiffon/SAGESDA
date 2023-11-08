@@ -268,17 +268,16 @@ print(subgraph)
 # The copy data has been generated for case study purpose only
 
 import copy
-
-# Step 1: Create copy of main graph
+# Create copy of main graph
 main_graph = data
 testing_data = copy.deepcopy(main_graph)
 selected_disease = selected_nodes['disease']
 
-# Step 2: Identify edges corresponding to selected disease and associated snoRNAs
+# Identify edges corresponding to selected disease and associated snoRNAs
 disease_snorna_edges = main_graph['disease', 'associates_with', 'snorna'].edge_index
 selected_disease_edges = disease_snorna_edges[:, disease_snorna_edges[0, :] == selected_disease]
 
-# Step 3: Remove edges corresponding to selected disease and associated snoRNAs from test data
+# Remove edges corresponding to selected disease and associated snoRNAs from test data
 testing_data['disease', 'associates_with', 'snorna'].edge_index = np.delete(
     testing_data['disease', 'associates_with', 'snorna'].edge_index, selected_disease_edges[1, :], axis=1)
 testing_data['snorna', 'rev_associates_with', 'disease'].edge_index = np.delete(
@@ -289,10 +288,8 @@ print("All graph object after removing known associations between selected disea
 print("*********************************************")
 print(testing_data)
 
-# Step 4: Train prediction model on remaining edges in main graph
-# Replace this with your own code to train a prediction model on the remaining edges in the main graph
-
-# Step 5: Use trained model to predict associations between disconnected snoRNAs and selected disease
+# Train prediction model on remaining edges in 
+# main graph and use a trained model to predict associations between disconnected snoRNAs and selected disease
 
 
 # In[22]:
